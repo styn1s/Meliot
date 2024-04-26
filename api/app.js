@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const { mongoose } = require('./db/moongoose');
+const { mongoose } = require('./db/mongoose');
 
 const bodyParser = require('body-parser');
 
@@ -37,10 +37,10 @@ let authenticate = (req, res, next) => {
     let token = req.header('x-access-token');
 
     if (!token) {
-        // Если токен отсутствует в запросе
-        res.status(401).send("Токен доступа отсутствует.");
+        // If access token is missing in a request
+        res.status(401).send("Access token is missing");
     } else {
-        // Если токен присутствует, то продолжаем его верификацию
+        // If access token exists - continue authentication
         jwt.verify(token, User.getJWTSecret(), (err, decoded) => {
             if (err) {
                 // there was an error
