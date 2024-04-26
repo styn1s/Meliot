@@ -1,0 +1,91 @@
+// This is where we put global styles and vaiable values
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+$turcuoise: #44ddd0;
+$deep-green: #36ca9e;
+$green: #27d7a1;
+$light-green: #45f69e;
+$dark-green: rgb(0, 100, 80);
+
+$light: #ebebeb;
+
+
+// Update Bulma's global variables
+$family-sans-serif: "Outfit", sans-serif;
+$primary: $green;
+$link: $light-green;
+
+
+// Update some of Bulma's component variables
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+
+// Set custom global styles (will be applied to whole app)
+html{
+    background: linear-gradient(to right top, $turcuoise, $green);
+}
+
+html, body{
+    height: 100%;
+}
+
+.centered-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-box{
+    padding: 35px;
+    min-height: 200px;
+    width: 100%;
+    max-width: 580px;
+    background-color: white;
+    border-radius: 10px;
+    font-family: "Outfit";
+    font-weight: bold;
+
+    h1{
+        color: $deep-green;
+        margin-bottom: 30px;
+    }
+    
+    input{
+        border: none;
+        outline-color: $green
+    }
+    
+    #cancel-btn{
+        border: 2px solid lightgray;
+    }
+}
+
+.white-box{
+    padding: 35px;
+    background-color: white;
+    border-radius: 1em;
+    width: 350px;
+    max-width: 350px;
+
+    input{
+        margin: 0 0 10px 0;
+        color: gray;
+        background-color: white;
+        border: none;
+        outline-color: $green;
+    }
+    
+    .title{
+        text-align: center;
+        font-family: "Outfit";
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+}
+

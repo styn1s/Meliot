@@ -1,0 +1,88 @@
+<div class="centered-content">
+
+    <div class="task-manager-container">
+
+        <div class="side-bar has-background-white">
+            <h1 class="title has-text-primary">Boards</h1>
+
+            <div class="list-menu">
+                <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists', list?._id]" routerLinkActive="is-active">
+                    <p>{{ list?.title }}</p>
+                </a>
+            </div>
+
+            <button class="button is-primary has-text-white" routerLink="/new-list">+ New board</button>
+
+        </div>
+
+        <div class="tasks-list-container has-background-light" [ngClass]="{ 'empty': !isListSelected() || tasks.length === 0}">
+
+            <div class="top-bar" [ngClass]="{ 'empty-board': tasks.length === 0}">
+                <h1 class="title has-text-primary" *ngIf="isListSelected() && tasks.length > 0">Tasks</h1>
+
+                <div class="dropdown is-hoverable is-right">
+                    <div class="dropdown-trigger">
+                      <button id="drop-btn" class="button has-text-black has-background-light" aria-haspopup="true">
+                        <span class="icon is-small">
+                          <i class="fas fa-cog" aria-hidden="true"></i>
+                        </span>
+                      </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+                      <div class="dropdown-content" style="border: 2px solid lightgrey;">
+                        <div class="dropdown-item">
+                            <a [routerLink]="['/edit-list', selectedListId]" class="dropdown-item has-text-black">Edit</a>
+                            <a (click)="onDeleteListClick();" class="dropdown-item has-text-danger">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <h3 *ngIf="isListSelected() && tasks.length === 0">No tasks here</h3>
+
+            <div *ngIf="tasks && tasks.length > 0">
+                <div class="tasks" [ngClass]=" { 'scrollable': tasks.length >= 5}">
+
+                    <!-- Task Elements  -->
+                    <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ completed: task.completed }">
+                        <div class="task-text">
+                            <p>{{ task.title }}</p>
+                        </div>
+                        <div class="task-buttons">
+
+                            <button class="button is-info" [routerLink]="['/lists', selectedListId, 'edit-task', task._id]">
+                                <div class="icon">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                            </button>
+
+                            <button class="button is-danger" (click)="onDeleteTaskClick(task._id);" style="margin-left: 10px;">
+                                <div class="icon">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                            </button>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <button class="circle-add-button button is-primary" *ngIf="isListSelected()" routerLink="./new-task">
+                <img src="../../../assets/plus-icon.svg">
+            </button>
+
+            <div class="empty-state" *ngIf="!isListSelected()">
+                <h3>Select a board</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button id="logout" class="button is-outlined" (click)="onLogoutButtonClick();">Logout</button>
+
+</div>
