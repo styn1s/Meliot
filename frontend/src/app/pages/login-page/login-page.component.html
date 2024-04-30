@@ -2,13 +2,16 @@
   <div class="white-box">
     <h1 class="title has-text-primary" style="margin-bottom: 20px">LOGIN</h1>
 
+    <p class="help is-danger" *ngIf="emailError">{{ emailError }}</p> <!-- Show email error message -->
     <div class="field">
       <p class="control has-icons-left has-icons-right">
         <input
+          [ngClass]="{ 'error': isEmailError()}"
           #emailInput
           class="input has-background-light"
           type="email"
           placeholder="Email"
+          (input)="checkEmail(emailInput.value)"
         />
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
@@ -16,13 +19,16 @@
       </p>
     </div>
 
+    <p class="help is-danger" *ngIf="passwordError">{{ passwordError }}</p> <!-- Show password error message -->
     <div class="field">
       <p class="control has-icons-left">
         <input
+          [ngClass]="{ 'error': isPasswordError()}"
           #pwInput
           class="input has-background-light"
           type="password"
           placeholder="Password"
+          (input)="checkPassword(pwInput.value)"
         />
         <span class="icon is-small is-left">
           <i class="fas fa-lock"></i>

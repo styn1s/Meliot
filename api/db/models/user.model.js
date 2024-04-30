@@ -95,8 +95,6 @@ UserSchema.statics.getJWTSecret = () => {
     return jwtSecret;
 }
 
-
-
 UserSchema.statics.findByIdAndToken = function (_id, token) {
     // finds user by id and token
     // used in auth middleware (verifySession)
@@ -121,7 +119,7 @@ UserSchema.statics.findByCredentials = function (email, password) {
                     resolve(user);
                 }
                 else {
-                    reject();
+                    reject("Incorrect password");
                 }
             })
         })

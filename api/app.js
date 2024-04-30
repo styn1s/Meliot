@@ -366,7 +366,11 @@ app.post('/users/login', (req, res) => {
                 .send(user);
         })
     }).catch((e) => {
-        res.status(400).send(e);
+        if (e === "Incorrect password") {
+            res.status(404).send("Incorrect password");
+        } else {
+            res.status(400).send(e);
+        }
     });
 })
 

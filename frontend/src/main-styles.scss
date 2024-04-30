@@ -65,19 +65,30 @@ html, body{
     }
 }
 
+.help{
+    float: right;
+    font-weight: bold;
+}
+
 .white-box{
     padding: 35px;
     background-color: white;
     border-radius: 1em;
     width: 350px;
     max-width: 350px;
+    font-family: 'Outfit';
 
     input{
+        font-family: "Outfit";
         margin: 0 0 10px 0;
         color: gray;
         background-color: white;
         border: none;
         outline-color: $green;
+
+        &.error{
+            outline-color: hsl(var(--bulma-danger-h), var(--bulma-danger-s), var(--bulma-danger-on-scheme-l));
+        }
     }
     
     .title{

@@ -6,6 +6,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
+
 })
 export class AuthService {
 
@@ -19,7 +20,7 @@ export class AuthService {
         this.setSession(res.body._id, res.headers.get('x-access-token') || '', res.headers.get('x-refresh-token') || '');
         console.log("LOGGED IN!");
       })
-    )
+    );
   }
 
   signup(email: string, password: string) {

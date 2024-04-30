@@ -12,7 +12,6 @@
             </div>
 
             <button class="button is-primary has-text-white" routerLink="/new-list">+ New board</button>
-
         </div>
 
         <div class="tasks-list-container has-background-light" [ngClass]="{ 'empty': !isListSelected() || tasks.length === 0}">
@@ -20,7 +19,7 @@
             <div class="top-bar" [ngClass]="{ 'empty-board': tasks.length === 0}">
                 <h1 class="title has-text-primary" *ngIf="isListSelected() && tasks.length > 0">Tasks</h1>
 
-                <div class="dropdown is-hoverable is-right">
+                <div *ngIf="isListSelected()" class="dropdown is-hoverable is-right">
                     <div class="dropdown-trigger">
                       <button id="drop-btn" class="button has-text-black has-background-light" aria-haspopup="true">
                         <span class="icon is-small">
