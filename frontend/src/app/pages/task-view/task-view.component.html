@@ -1,7 +1,5 @@
 <div class="centered-content">
-
     <div class="task-manager-container">
-
         <div class="side-bar has-background-white">
             <h1 class="title has-text-primary">Boards</h1>
 
@@ -15,7 +13,6 @@
         </div>
 
         <div class="tasks-list-container has-background-light" [ngClass]="{ 'empty': !isListSelected() || tasks.length === 0}">
-
             <div class="top-bar" [ngClass]="{ 'empty-board': tasks.length === 0}">
                 <h1 class="title has-text-primary" *ngIf="isListSelected() && tasks.length > 0">Tasks</h1>
 
@@ -36,37 +33,29 @@
                       </div>
                     </div>
                 </div>
-
             </div>
             
             <h3 *ngIf="isListSelected() && tasks.length === 0">No tasks here</h3>
 
-            <div *ngIf="tasks && tasks.length > 0">
-                <div class="tasks" [ngClass]=" { 'scrollable': tasks.length >= 5}">
-
-                    <!-- Task Elements  -->
-                    <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ completed: task.completed }">
-                        <div class="task-text">
-                            <p>{{ task.title }}</p>
-                        </div>
-                        <div class="task-buttons">
-
-                            <button class="button is-info" [routerLink]="['/lists', selectedListId, 'edit-task', task._id]">
-                                <div class="icon">
-                                    <i class="fas fa-edit"></i>
-                                </div>
-                            </button>
-
-                            <button class="button is-danger" (click)="onDeleteTaskClick(task._id);" style="margin-left: 10px;">
-                                <div class="icon">
-                                    <i class="fas fa-trash"></i>
-                                </div>
-                            </button>
-                            
-                        </div>
-
+            <div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="tasks && tasks.length > 0" class="tasks" [ngClass]=" { 'scrollable': tasks.length >= 5}">
+                <!-- Task Elements  -->
+                <div cdkDrag class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ completed: task.completed }">
+                    <div class="task-text">
+                        <p>{{ task?.title }}</p>
                     </div>
+                    <div class="task-buttons">
+                        <button class="button is-info" [routerLink]="['/lists', selectedListId, 'edit-task', task._id]">
+                            <div class="icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                        </button>
 
+                        <button class="button is-danger" (click)="onDeleteTaskClick(task._id);" style="margin-left: 10px;">
+                            <div class="icon">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -77,11 +66,8 @@
             <div class="empty-state" *ngIf="!isListSelected()">
                 <h3>Select a board</h3>
             </div>
-
         </div>
-
     </div>
 
     <button id="logout" class="button is-outlined" (click)="onLogoutButtonClick();">Logout</button>
-
 </div>
