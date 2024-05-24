@@ -3,7 +3,7 @@
         <div class="side-bar has-background-white">
             <h1 class="title has-text-primary">Boards</h1>
 
-            <div class="list-menu">
+            <div class="list-menu" [ngClass]="{ 'scrollable': lists.length >= 3 }">
                 <a class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists', list?._id]" routerLinkActive="is-active">
                     <p>{{ list?.title }}</p>
                 </a>
