@@ -1,6 +1,7 @@
 <div class="centered-content">
     <div class="task-manager-container">
-        <div class="side-bar has-background-white">
+
+        <div class="side-bar has-background-white" [ngClass]="{ 'is-visible': !isSidebarVisible }">
             <h1 class="title has-text-primary">Boards</h1>
 
             <div class="list-menu" [ngClass]="{ 'scrollable': lists.length >= 3 }">
@@ -9,10 +10,19 @@
                 </a>
             </div>
 
-            <button class="button is-primary has-text-white" routerLink="/new-list">+ New board</button>
+            <button id="hide-sidebar-btn" class="button is-primary is-hidden-tablet" (click)="toggleSidebar()">
+                <span class="icon"><i class="fas fa-eye-slash"></i></span>
+            </button>
+
+            <button id="new-board-btn" class="button is-primary has-text-white" routerLink="/new-list">+ New board</button>
         </div>
 
         <div class="tasks-list-container has-background-light" [ngClass]="{ 'empty': !isListSelected() || tasks.length === 0}">
+
+            <button id="burger-menu-btn" class="button is-primary is-hidden-tablet" (click)="toggleSidebar()">
+                <span class="icon"><i class="fas fa-eye"></i></span>
+            </button>
+
             <div class="top-bar" [ngClass]="{ 'empty-board': tasks.length === 0}">
                 <h1 class="title has-text-primary" *ngIf="isListSelected() && tasks.length > 0">Tasks</h1>
 
@@ -70,4 +80,5 @@
     </div>
 
     <button id="logout" class="button is-outlined" (click)="onLogoutButtonClick();">Logout</button>
+    
 </div>

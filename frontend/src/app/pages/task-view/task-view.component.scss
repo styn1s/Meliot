@@ -203,8 +203,93 @@ a.dropdown-item, .dropdown-content{
 
 #logout{
     position: absolute;
-    top: 30px;
+    top: 35px;
     right: 35px;
     color: white;
     border-color: white;
+}
+
+@media screen and (max-width: 1024px){
+    .task-manager-container{
+        max-width: none;
+        max-height: none;
+    }
+
+    .side-bar{
+        position: relative;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .tasks-list-container{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    #new-board-btn{
+        position: absolute;
+        left: 35px;
+        bottom: 35px;
+    }
+
+    #logout{
+        position: absolute;
+        right: 90px;
+        top: 41px;
+        color: $green;
+        border-color: $green;
+    }
+
+    .list-menu.scrollable {
+        max-height: 400px; // Change this value as needed
+    }
+
+    .tasks.scrollable {
+        max-height: 430px;
+    }
+}
+
+@media screen and (max-width: 768px){
+
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        transform: translateX(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        z-index: 1000;
+      }
+    
+      .side-bar.is-visible {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+
+    #burger-menu-btn{
+        color: white;
+        position: absolute;
+        left: 0;
+        bottom: 35px;
+        width: 50px;
+        height: 50px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+
+    #hide-sidebar-btn{
+        color: rgb(150, 149, 149);
+        background-color: rgb(238, 238, 238);
+        position: absolute;
+        left: 80px;
+        bottom: 85px;
+        border-radius: 20px;
+    }
 }

@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Task } from '../../models/task.model';
 import { List } from '../../models/list.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-task-view',
@@ -15,7 +16,8 @@ export class TaskViewComponent implements OnInit {
   lists: List[] = [];
   tasks: Task[] = [];
   selectedListId?: string | null;
-
+  isSidebarVisible: boolean = true;
+  
   constructor(
     private taskService: TaskService,
     private router: Router,
@@ -40,6 +42,10 @@ export class TaskViewComponent implements OnInit {
     this.taskService.getLists().subscribe((lists: List[] | unknown) => {
       this.lists = lists as List[] ?? []; // Cast lists as List[]
     });
+  }
+
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
   }
 
   isListSelected(): boolean {
